@@ -15,7 +15,6 @@ lv_obj_t * ui_Ohms = NULL;
 lv_obj_t * ui_OhmBar = NULL;
 lv_obj_t * ui_PotOhm = NULL;
 lv_obj_t * ui_IndiText = NULL;
-lv_obj_t * ui_Arc1 = NULL;
 // event funtions
 void ui_event_PotValRing(lv_event_t * e)
 {
@@ -88,6 +87,8 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_height(ui_PotOhm, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_PotOhm, LV_ALIGN_CENTER);
     lv_label_set_text(ui_PotOhm, "ReadedOhms");
+    lv_obj_set_style_text_color(ui_PotOhm, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_PotOhm, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_IndiText = lv_label_create(ui_Ohms);
     lv_obj_set_width(ui_IndiText, LV_SIZE_CONTENT);   /// 1
@@ -96,14 +97,6 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_y(ui_IndiText, 78);
     lv_obj_set_align(ui_IndiText, LV_ALIGN_CENTER);
     lv_label_set_text(ui_IndiText, "Potentio Meter Resistance");
-
-    ui_Arc1 = lv_arc_create(ui_Screen1);
-    lv_obj_set_width(ui_Arc1, 150);
-    lv_obj_set_height(ui_Arc1, 150);
-    lv_obj_set_x(ui_Arc1, -149);
-    lv_obj_set_y(ui_Arc1, -71);
-    lv_obj_set_align(ui_Arc1, LV_ALIGN_CENTER);
-    lv_arc_set_value(ui_Arc1, 50);
 
     lv_obj_add_event_cb(ui_PotValRing, ui_event_PotValRing, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_OhmBar, ui_event_OhmBar, LV_EVENT_ALL, NULL);
@@ -127,6 +120,5 @@ void ui_Screen1_screen_destroy(void)
     ui_OhmBar = NULL;
     ui_PotOhm = NULL;
     ui_IndiText = NULL;
-    ui_Arc1 = NULL;
 
 }

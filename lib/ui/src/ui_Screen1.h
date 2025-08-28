@@ -23,7 +23,6 @@ extern void ui_event_OhmBar(lv_event_t * e);
 extern lv_obj_t * ui_OhmBar;
 extern lv_obj_t * ui_PotOhm;
 extern lv_obj_t * ui_IndiText;
-extern lv_obj_t * ui_Arc1;
 // CUSTOM VARIABLES
 extern lv_obj_t * uic_Arc3;
 extern lv_obj_t * uic_OhmBar;

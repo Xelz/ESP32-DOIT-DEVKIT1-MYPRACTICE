@@ -103,10 +103,10 @@ void DHTReadCallback(lv_timer_t * timer){
     dht.readDHT22();
     float temp = dht.getTemperature();
     float humidity = dht.getHumidity();
-    // Serial.print("Temperature: ");
-    // Serial.print(temp);
-    // Serial.print("  Humidity: ");
-    // Serial.println(humidity);
+    Serial.print("Temperature: ");
+    Serial.print(temp);
+    Serial.print("  Humidity: ");
+    Serial.println(humidity);
     // lv_label_set_text(ui_TempVal, String(temp).c_str());
-    lv_arc_set_value(ui_Arc1, humidity);
+    // lv_arc_set_value(ui_Arc1, humidity);
 }
