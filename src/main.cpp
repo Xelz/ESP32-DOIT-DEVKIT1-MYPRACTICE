@@ -1,5 +1,7 @@
 #include "Screen.h"
 #include "DHT22.h"
+#include "PWM.h"
+
 
 #define BAUD_RATE 115200
 #define POT_PIN 14
@@ -7,6 +9,9 @@
 
 /* --- DHT22 sensor instance --- */
 DHT22 dht(DHT_PIN_1);
+
+/* --- PWM Instance --- */
+PWM pwm(BUILTIN_LED, 4000, 7, 8);
 
 void setup()
 {
@@ -60,10 +65,15 @@ void setup()
     /* --- Setup periodic timers callback --- */
     lv_timer_create(PotTimerCallback, 16, NULL);
     lv_timer_create(DHTReadCallback, 2000, NULL);
+
+    pwm.init();
+    pwm.updateDuty(128); // 50% duty cycle
 }
 
 void loop()
 {
+    pwm.updateDuty(lastPotRead * 255 / 10000); // Scale 0-100 to 0-255
+    lv_timer_handler(); /* let the GUI do its work */
     // potRead = analogRead(POT_PIN) / 4095.0 * 100.0;
     // lastPotRead = potRead;
     // Serial.print("Serial Start ");
@@ -73,7 +83,7 @@ void loop()
     // Serial.print("Potentiometer Reading: ");
     // Serial.println(potRead);
 
-    lv_timer_handler(); /* let the GUI do its work */
+    
 }
 
 
